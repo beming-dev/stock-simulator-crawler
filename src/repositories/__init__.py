@@ -1,4 +1,6 @@
 from .StockRepository import StockRepository
-from .NewsReposistory import NewsRepository
+from .NewsRepository import NewsRepository
+from .MySQLStockRepository import MySQLStockRepository
+from .MySQLNewsRepository import MySQLNewsRepository
 
-__all__ = ['StockRepository', 'NewsRepository']
+__all__ = ['StockRepository', 'NewsRepository', 'MySQLStockRepository', 'MySQLNewsRepository']

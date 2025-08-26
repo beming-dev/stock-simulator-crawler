@@ -1,7 +1,7 @@
 from typing import List
 from mysql.connector.connection import MySQLConnection
 from src.domain.entities import Stock
-from src.repositories.StockRepository import StockRepository
+from src.repositories import StockRepository
 
 
 class MySQLStockRepository(StockRepository):

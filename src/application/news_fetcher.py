@@ -1,7 +1,7 @@
 from typing import Dict, List
 from src.domain.entities import NewsArticle
 from src.repositories import StockRepository
-from src.repositories.NewsReposistory import NewsRepository
+from src.repositories.NewsRepository import NewsRepository
 import requests
 import xml.etree.ElementTree as ET
 from urllib.parse import quote

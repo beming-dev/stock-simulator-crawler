@@ -1,7 +1,7 @@
 from typing import List
 from mysql.connector.connection import MySQLConnection
 from src.domain.entities import NewsArticle
-from src.repositories.NewsReposistory import NewsRepository
+from src.repositories.NewsRepository import NewsRepository
 
 
 class MySQLNewsRepository(NewsRepository):

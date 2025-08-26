@@ -1,27 +1,25 @@
 # src/main.py
 
-from src.application.news_fetcher import FetchRecentStockNews
-from src.infrastructure.database import get_db_connection
-from src.repositories.MySQLNewsRepository import MySQLNewsRepository
-from src.repositories.MySQLStockRepository import MySQLStockRepository
+from src.infrastructure import container
 
 def main():
     """프로그램의 메인 로직을 실행합니다."""
-    conn = get_db_connection()
-    
-    if conn and conn.is_connected():
-        stock_repo = MySQLStockRepository(conn)
-        news_repo = MySQLNewsRepository(conn)
-        news_fetcher = FetchRecentStockNews(stock_repo, news_repo)
+    try:
+        # 의존성 주입 컨테이너에서 필요한 객체들을 가져옴
+        news_fetcher = container.get_news_fetcher()
         
         # 임시로 하드코딩된 티커 리스트 사용 (데이터베이스 오류 방지)
         tickers = ["AAPL", "GOOGL", "MSFT", "TSLA"]
         
-        conn.close()
-        print("데이터베이스 연결이 종료되었습니다.")
-
+        # 각 티커에 대해 뉴스 검색 수행
         for ticker in tickers:
             news_fetcher.search_google_news_kr(ticker)
+            
+    except Exception as e:
+        print(f"프로그램 실행 중 오류 발생: {e}")
+    finally:
+        # 리소스 정리
+        container.cleanup()
 
 if __name__ == "__main__":
     main()
